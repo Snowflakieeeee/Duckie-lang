@@ -153,9 +153,7 @@ def interpret(ast):
                     v[1] = variables[v[0]]
                     
                 variables[v[0]] = [v[1], vartype]
-                    
-        
-                    
+                
             if k == "say":
                 speech = []
                 i = 0
@@ -163,14 +161,21 @@ def interpret(ast):
                     if v[i][0] == '"':
                         speech.append(v[i][1:-1])
                     elif v[i][0] != '"':
-                        speech.append(variables[v[i]][0][1:-1])
-                        
+                        if variables[v[i]][0][-1:] == '"':
+                            speech.append(variables[v[i]][0][1:-1])
+                        else:
+                            speech.append(variables[v[i]][0])
                     i +=1
                 print("duckie says:", end=" ") 
                 for item in speech:
                     print(item, end=" ")
                 print(" ")
-            
+                
+            if k == "listen":
+                if v[0] == "forget":
+                    print("i forgot.")
+                elif v[0] == "write":
+                    variables[v[1]] = [input("duckie is listening:"), "string"]
 
 data = readfile("input/test.dc")
 tokens = lexdata(data)
