@@ -92,7 +92,7 @@ def parsedata(tokens):
             line_num += 1
         if token[0] == "KEYWORD":
             if token[1] == "remember":
-                ast.append({"remember":[tokens[token_num+1][1], tokens[token_num+3][1]]})
+                ast.append({"remember":[tokens[token_num+1][1], tokens[token_num+3][1], line_num]})
             if token[1] == "say":
                 arguments = []
                 i = 1
@@ -102,19 +102,21 @@ def parsedata(tokens):
                     else:
                         arguments.append(tokens[token_num+i][1])
                     i+=1
+                arguments.append(line_num)
                 ast.append({"say": arguments})
             if token[1] == "listen":
                 if tokens[token_num+2][1] == "forget":
-                    ast.append({"listen": ["forget"]})
+                    ast.append({"listen": ["forget", line_num]})
                     
                 elif tokens[token_num+2][1] == "write":
                     if tokens[token_num+3][1] != "on":
                         print("{}:line\nduckie:da waht.".format(line_num))
                         sys.exit(3)
-                    ast.append({"listen": [tokens[token_num+2][1], tokens[token_num+4][1]]})
+                    ast.append({"listen": [tokens[token_num+2][1], tokens[token_num+4][1], line_num]})
                     
                 else:
                     print("{}:line\nduckie: listen and do waht.".format(line_num))
+                    sys.exit(3)
                     
         token_num += 1
         
@@ -122,10 +124,52 @@ def parsedata(tokens):
     return ast
 
 def interpret(ast):
+    variables = {}
     for node in ast:
         for k,v in node.items():
+            if k == "remember":
+                if len(v) > 3:
+                    print("too many arguements, internal err")
+                    sys.exit(3)
+                if v[0] == v[1]:
+                    print("I see. The floor is made out of floor. line:{}".format(v[2]+2))
+                    sys.exit(3)
+                    
+                
+                vartype = ""
+                try:
+                    int(v[1])
+                    vartype = "integer"
+                    continue
+                except:
+                    pass
+                
+                if v[1][0] == '"':
+                    vartype = "string"
+                    
+                
+                elif v[1][0] != '"':
+                    print("here")
+                    v[1] = variables[v[0]]
+                    
+                variables[v[0]] = [v[1], vartype]
+                    
+        
+                    
             if k == "say":
-                print("duckie says: ") #contiue from here pls pls
+                speech = []
+                i = 0
+                while i != len(v)-1:
+                    if v[i][0] == '"':
+                        speech.append(v[i][1:-1])
+                    elif v[i][0] != '"':
+                        speech.append(variables[v[i]][0][1:-1])
+                        
+                    i +=1
+                print("duckie says:", end=" ") 
+                for item in speech:
+                    print(item, end=" ")
+                print(" ")
             
 
 data = readfile("input/test.dc")
