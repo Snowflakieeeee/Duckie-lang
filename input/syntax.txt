@@ -1,0 +1,14 @@
+program entry "good morning duckie" --> comments and should not be compiled before this command
+0 --> hlt
+1 --> add
+2 --> sub
+3 --> mul
+4 --> div
+5 --> push to stack (next line is input for alphabet no. 0-26)
+7 --> print character on top of the stack (as literal)
+8 --> print character on top of the stack (as ascii)
+9 --> take one char input and pushes onto stack (as ascii)
+10+ --> pushes literal number n-10 to stack
+
+
+x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
