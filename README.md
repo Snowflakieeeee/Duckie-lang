@@ -26,11 +26,6 @@ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
 **known bugs**<br>
 ---> Newline produces one quack resulting in op code 1, resulting in addition of values when not needed currently advised to sticking with code without  unncessary newlines<br>
 
-**future plans**<br>
----> As this is a hobby project made for fun (also in a language I didnt know much of either) I wouldnt bet on its updates, say, 6 months later.<br>
----> Althought I have a few ideas, I intend to add few other characters (say, bear, that growls) that can be invited, in programming terms, a package/module/crate/etc.<br>
----> Because this is written in C, I am a bit reluctant to add too much support for things like graphics, but who knows, I will suffer anyways<br>
-
 **hello world example**<br>
 ```
 quack quack quack quack quack 
@@ -67,7 +62,3 @@ quack quack quack quack quack quack quack quack quack quack quack quack quack qu
 quack quack quack quack quack quack quack quack 
 ```
 yep, happy quacking. 
-
-
-
-**feedback appreciated -Snowflake#3636**
