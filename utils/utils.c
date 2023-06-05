@@ -51,16 +51,12 @@ void run(int *opcodes){
 		}
 		else if (opcodes[i] == 1){
 				stack[stacktop] = stack[stacktop-1] + stack[stacktop-2];
-				// printf("adding\n");
 		} else if (opcodes[i] == 2){
 				stack[stacktop] = stack[stacktop-1] - stack[stacktop-2];
-				// printf("subtracting\n");
 		} else if (opcodes[i] == 3){
 				stack[stacktop] = stack[stacktop-1] * stack[stacktop-2];
-				// printf("multipltying\n");
 		} else if (opcodes[i] == 4){
 				stack[stacktop] = stack[stacktop-1] / stack[stacktop-2];
-				// printf("dividing\n");
 		} else if (opcodes[i] == 5){
 				stack[stacktop] = opcodes[currentop+1] + 96;
 				ignorenextline = 1;
