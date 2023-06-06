@@ -89,15 +89,15 @@ void run(vector<int> opcodes){
 		currentop++;
 	}
 }
-int main(){
-    
+
+string read_file(string name){
     FILE    *textfile;
     char    *text;
     long    numbytes;
      
-    textfile = fopen("test.dkie", "r");
+    textfile = fopen(name, "r");
     if(textfile == NULL)
-        return 1;
+        return "";
      
     fseek(textfile, 0L, SEEK_END);
     numbytes = ftell(textfile);
@@ -105,12 +105,19 @@ int main(){
  
     text = (char*)calloc(numbytes, sizeof(char));   
     if(text == NULL)
-        return 1;
+        return "";
  
     fread(text, sizeof(char), numbytes, textfile);
     fclose(textfile);
     
-    vector<string> lines = tokenizer(text, '\n');
+    return text;
+}
+
+int main(){
+    
+    
+    
+    vector<string> lines = tokenizer(read_file("test.dkie"), '\n');
 
     int numofquacks = 0;
     vector<int> opcodes;
